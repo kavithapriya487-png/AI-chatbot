@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f8fc">
+    <meta name="description" content="A helpful AI assistant for questions, research, and ideas.">
+    <title>Nova — AI assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Chat options">
+        <a class="brand" href="/" aria-label="Nova home">
+          <span class="brand-mark" aria-hidden="true">✳</span>
+          <span>nova<span class="brand-dot">.</span></span>
+        </a>
+        <button class="new-chat" id="new-chat" type="button">
+          <span aria-hidden="true">＋</span> New chat
+        </button>
+        <div class="sidebar-note">
+          <span class="online-dot" aria-hidden="true"></span>
+          <span>Ready when you are</span>
+        </div>
+        <div class="sidebar-bottom">
+          <div class="avatar" aria-hidden="true">N</div>
+          <div>
+            <strong>Your AI assistant</strong>
+            <span>Powered by Groq</span>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div class="mobile-brand"><span class="brand-mark" aria-hidden="true">✳</span> nova<span class="brand-dot">.</span></div>
+          <div class="model-label"><span class="status-dot" aria-hidden="true"></span> AI Assistant</div>
+          <button class="top-new-chat" id="top-new-chat" type="button">New chat</button>
+        </header>
+
+        <section class="chat-area" aria-label="Conversation">
+          <div class="welcome" id="welcome">
+            <div class="welcome-icon" aria-hidden="true">✳</div>
+            <p class="eyebrow">YOUR THOUGHT PARTNER</p>
+            <h1>What can I help<br>you with today?</h1>
+            <p class="welcome-copy">Ask anything, explore an idea, or dig into the latest research.</p>
+            <div class="suggestions" aria-label="Try asking">
+              <button class="suggestion" type="button" data-prompt="Explain a complex idea in simple terms">✦ <span>Explain something</span><span class="arrow">↗</span></button>
+              <button class="suggestion" type="button" data-prompt="Find recent research about artificial intelligence">⌕ <span>Explore research</span><span class="arrow">↗</span></button>
+              <button class="suggestion" type="button" data-prompt="Help me brainstorm a creative project idea">✎ <span>Brainstorm ideas</span><span class="arrow">↗</span></button>
+            </div>
+          </div>
+          <div class="messages" id="messages" aria-live="polite" aria-relevant="additions text"></div>
+        </section>
+
+        <div class="composer-wrap">
+          <form class="composer" id="chat-form">
+            <label class="sr-only" for="message-input">Message the assistant</label>
+            <textarea id="message-input" name="message" placeholder="Message Nova..." rows="1" maxlength="8000" required></textarea>
+            <button class="send-button" id="send-button" type="submit" aria-label="Send message">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </form>
+          <p class="disclaimer">Nova can make mistakes. Check important information.</p>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

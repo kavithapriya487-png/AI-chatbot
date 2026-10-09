@@ -1,0 +1,12 @@
+pydantic
+langchain
+langgraph
+# langgraph-core
+# langgraph-community
+langchain-community
+python-dotenv
+langchain-groq
+arxiv<2
+wikipedia
+flask
+gunicorn
