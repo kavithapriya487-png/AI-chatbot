@@ -22,7 +22,7 @@ load_dotenv(PROJECT_ROOT / ".env")
 logging.basicConfig(level=os.getenv("LOG_LEVEL", "INFO"))
 logger = logging.getLogger(__name__)
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="public", static_url_path="")
 app.config["MAX_CONTENT_LENGTH"] = 384 * 1024
 
 MAX_MESSAGES = 20

@@ -5,10 +5,10 @@ Nova turns the LangGraph chatbot into a responsive website. It can answer genera
 ## Run it locally
 
 1. Install Python 3.11 or newer.
-2. Open a terminal in `langraph` and install the dependencies:
+2. From the project root, install the dependencies into the existing `.venv`:
 
    ```powershell
-   py -m pip install -r requirements.txt
+   .\.venv\Scripts\python.exe -m pip install -r .\langraph\requirements.txt
    ```
 
 3. Create a `.env` file in the project root (next to this README):
@@ -20,24 +20,23 @@ Nova turns the LangGraph chatbot into a responsive website. It can answer genera
 
    Get API keys from [Groq](https://console.groq.com/keys) and [Tavily](https://app.tavily.com/). Groq is required. Tavily is optional; without it, web search is disabled.
 
-4. Start the website from the `langraph` directory:
+4. Start the website from the project root:
 
    ```powershell
-   py -m flask --app app run --debug
+   .\.venv\Scripts\python.exe -m flask --app .\langraph\app run --debug
    ```
 
 5. Open <http://127.0.0.1:5000>.
 
-## Share it as a website
+## Deploy to Vercel
 
-Deploy the project to a Python web host such as Render:
-
-1. Push the project to a private or public GitHub repository. Do not commit `.env`; `.gitignore` excludes it.
-2. Create a **Web Service** on Render and connect the repository.
-3. Set the service's **Root Directory** to `langraph`.
-4. Set the build command to `pip install -r requirements.txt`.
-5. Set the start command to `gunicorn app:app`.
-6. Add `GROQ_API_KEY` and `TAVILY_API_KEY` as environment variables in the host's dashboard. Never put these values in the frontend or in a committed file.
-7. Deploy, then share the public URL with your friend.
+1. Push the project to GitHub. Do not commit `.env`; `.gitignore` excludes it.
+2. In Vercel, import the GitHub repository.
+3. Set the Vercel project's **Root Directory** to `langraph`.
+4. In **Settings → Environment Variables**, add `GROQ_API_KEY`. Add `TAVILY_API_KEY` for web search (optional).
+5. Deploy or redeploy the project. The project includes Vercel's Python function configuration and serves browser assets from `langraph/public`.
+6. Open the deployment URL and try a chat. If it fails, check the deployment's **Functions** logs; the browser's developer console and Network panel can also show whether `/api/chat` returned an error.
 
 The app keeps conversation history in each visitor's browser. The model API is called by the server, so the API keys are not exposed to visitors. Configure billing and usage limits on your Groq and Tavily accounts before sharing a public URL; anyone with access to the site can send requests that use your API quota.
+
+The local address only works while the development server is running on your computer. If `.venv` is missing, create it with `py -m venv .venv` before installing the dependencies.
